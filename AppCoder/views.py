@@ -12,4 +12,4 @@ def curso(request):
     curso2 = Curso(nombre="Diseno", camada=656)
     curso2.save()
 
-    return HttpResponse(f"Estoy guardando el primer curso: {curso2.nombre}")
+    return render(request, "AppCoder/curso.html")

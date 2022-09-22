@@ -10,7 +10,11 @@ def inicio(request):
 
 def curso(request):
 
-    curso2 = Curso(nombre="Diseno", camada=656)
-    curso2.save()
+    #curso2 = Curso(nombre="Diseno", camada=656)
+    #curso2.save()
 
     return render(request, "AppCoder/curso.html")
+
+def resena(request):
+
+    return render(request, "AppCoder/resena.html")

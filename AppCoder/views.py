@@ -1,3 +1,4 @@
+from http.client import HTTPResponse
 from django.shortcuts import render
 from AppCoder.models import *
 from django.http import HttpResponse
@@ -5,7 +6,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def inicio(request):
-    return HttpResponse("vista inicio")
+    return render(request, "AppCoder/inicio.html")
 
 def curso(request):
 

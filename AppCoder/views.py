@@ -18,3 +18,7 @@ def curso(request):
 def resena(request):
 
     return render(request, "AppCoder/resena.html")
+
+def formulario1(request):
+
+    return render(request, "AppCoder/form1.html")

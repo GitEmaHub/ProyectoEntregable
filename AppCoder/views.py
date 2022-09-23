@@ -2,6 +2,7 @@ from http.client import HTTPResponse
 from django.shortcuts import render
 from AppCoder.models import *
 from django.http import HttpResponse
+from AppCoder.forms import *
 
 # Create your views here.
 
@@ -19,13 +20,23 @@ def resena(request):
 
     return render(request, "AppCoder/resena.html")
 
-def formulario(request):
+def formulario1(request):
 
     if request.method=="POST":
 
-        cursoF = Curso(nombre=request.POST["curso"], camada=request.POST["camada"])
-        cursoF.save()
+        formulario1 = FormularioCurso(request.POST)
 
-        return render(request, "AppCoder/formulario.html")
+        if formulario1.is_valid:
 
-    return render(request, "AppCoder/formulario.html")
+            info = formulario1.cleaned_data
+
+            cursoF = Curso(nombre=info["curso"], camada=info["camada"])
+            cursoF.save()
+
+            return render(request, "AppCoder/inicio.html")
+
+    else:
+
+        formulario1 = FormularioCurso()
+ 
+    return render(request, "AppCoder/formulario.html", {"form1":formulario1})

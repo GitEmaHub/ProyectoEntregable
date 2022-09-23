@@ -19,6 +19,13 @@ def resena(request):
 
     return render(request, "AppCoder/resena.html")
 
-def formulario1(request):
+def formulario(request):
 
-    return render(request, "AppCoder/form1.html")
+    if request.method=="POST":
+
+        cursoF = Curso(nombre=request.POST["curso"], camada=request.POST["camada"])
+        cursoF.save()
+
+        return render(request, "AppCoder/formulario.html")
+
+    return render(request, "AppCoder/formulario.html")

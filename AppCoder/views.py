@@ -1,8 +1,8 @@
 from http.client import HTTPResponse
 from django.shortcuts import render
 from AppCoder.models import *
+from AppCoder.forms import FormularioCurso
 from django.http import HttpResponse
-from AppCoder.forms import *
 
 # Create your views here.
 
@@ -20,15 +20,15 @@ def resena(request):
 
     return render(request, "AppCoder/resena.html")
 
-def formulario(request):
+def formulario1(request):
 
     if request.method=="POST":
 
-        formulario = FormularioCurso(request.POST)
+        formulario1 = FormularioCurso(request.POST)
 
-        if formulario.is_valid:
+        if formulario1.is_valid():
 
-            info = formulario.cleaned_data
+            info = formulario1.cleaned_data
 
             cursoF = Curso(nombre=info["curso"], camada=info["camada"])
             cursoF.save()
@@ -37,6 +37,26 @@ def formulario(request):
 
     else:
 
-        formulario = FormularioCurso()
+        formulario1 = FormularioCurso()
  
-    return render(request, "AppCoder/formulario.html", {"form1":formulario})
+    return render(request, "AppCoder/formu1.html", {"form1":formulario1})
+
+
+def BusquedaCurso(request):
+
+    return render(request, "AppCoder/BusquedaCurso.html")
+
+def buscar(request):
+
+    if request.GET["camada"]:
+        
+        busqueda = request.GET["camada"]
+        cursos = Curso.objects.filter(camada__iexact=busqueda)
+
+        return render(request, "AppCoder/inicio.html", {"cursos":cursos, "busqueda":busqueda})
+
+    else:
+
+        mensaje = "No enviaste los datos correctos."
+
+    return HttpResponse(mensaje)

@@ -7,8 +7,26 @@
     <title>Document</title>
 </head>
 <body>
+
+    <p>Estas buscando la camada: {{busqueda}}
+
+    {% for curso in cursos %}
     
-{{formulario}}
+        <ul>
+            <li>Curso: {{curso.nombre}}</li>
+            <li>Camada: {{curso.camada}}</li>
+
+
+        </ul>
+
+
+    {% endfor %}
+
+
+    </p>
+    
+
+
 
 </body>
 </html>

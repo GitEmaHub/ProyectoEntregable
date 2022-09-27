@@ -5,6 +5,9 @@ urlpatterns = [
     path("", inicio, name="Inicio"), 
     path("curso/", curso, name="Curso"), 
     path("resena/", resena, name="Resena"), 
-    path("formulario/", formulario), 
+    path("form1/", formulario1, name=""), 
+    path("buscarCurso/", BusquedaCurso),
+    path("buscar/", buscar),
+
 ]
  
